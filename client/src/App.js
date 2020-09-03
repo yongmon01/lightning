@@ -15,6 +15,9 @@ import LoginPage from '../src/components/views/LoginPage/LoginPage';
 import NavBar from '../src/components/views/NavBar/NavBar';
 import RegisterPage from '../src/components/views/RegisterPage/RegisterPage';
 import VideoUploadPage from '../src/components/views/VideoUploadPage/VideoUploadPage';
+import WritingUploadPage from '../src/components/views/WritingUploadPage/WritingUploadPage';
+
+import TestPage from '../src/components/views/TestPage/TestPage';
 
 import Auth from './hoc/auth';
 
@@ -22,6 +25,7 @@ function App() {
   return (
     <Router>
       <NavBar />
+      {/* <TestPage/> */}
       <div>
         {/*
           A <Switch> looks through all its children <Route>
@@ -43,7 +47,8 @@ function App() {
           <Route exact path="/login" component = {Auth(LoginPage, false)}/>
           <Route exact path="/register" component = {Auth(RegisterPage, false)}/>
           <Route exact path="/video/upload" component = {Auth(VideoUploadPage, true)}/>
-          
+          <Route exact path="/test" component = {Auth(TestPage, null)}/>
+          <Route exact path="/writing/upload" component = {Auth(WritingUploadPage, true)}/>
         </Switch>
       </div>
     </Router>

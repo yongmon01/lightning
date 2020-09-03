@@ -54,9 +54,9 @@ function NavBar(props) {
                     </IconButton> */}
                     
                     <Typography variant="h6" className={classes.title}>
-                    <Button onClick ><a href='/' className="no-underline">Home</a></Button>
+                    <Button  ><a href='/' className="no-underline">Home</a></Button>
                     </Typography>
-                    <Button onClick color="inherit"><a href='/login' className="no-underline">Sign in</a></Button>
+                    <Button  color="inherit"><a href='/login' className="no-underline">Sign in</a></Button>
                     <Button color="inherit"><a href='/register' className="no-underline">Sign up</a></Button>
                     </Toolbar>
                 </AppBar>
@@ -72,7 +72,7 @@ function NavBar(props) {
                 </IconButton> */}
                 
                 <Typography variant="h6" className={classes.title}>
-                <Button onClick><a href='/'>Home</a></Button>
+                <Button ><a href='/'>Home</a></Button>
                 </Typography>
                 <Button onClick={logoutHandler} color="inherit">Sign out</Button>
                 </Toolbar>
