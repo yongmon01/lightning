@@ -33,6 +33,9 @@ function NavBar(props) {
     const user = useSelector(state => state.user)
 
     const logoutHandler = () =>{
+
+        localStorage.removeItem('userId')
+
         axios.get('/api/users/logout')
         .then(response=>{
             if (response.data.success){
