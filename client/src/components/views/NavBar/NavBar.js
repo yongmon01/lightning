@@ -77,7 +77,7 @@ function NavBar(props) {
                 <Typography variant="h6" className={classes.title}>
                 <Button ><a href='/'>Home</a></Button>
                 <Button ><a href='/writing/upload' style={{color:'white'}}>글쓰기</a></Button>
-                <Button ><a href='/writing/upload' style={{color:'white'}}>내 활동</a></Button>
+                <Button ><a href='/join/joinedPage' style={{color:'white'}}>내 활동</a></Button>
                 </Typography>
                 <Button onClick={logoutHandler} color="inherit">로그아웃</Button>
                 </Toolbar>

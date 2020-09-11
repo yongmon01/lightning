@@ -41,5 +41,27 @@ router.post("/join",(req,res)=>{
     })
 })
 
+// router.post("/getJoinedMeetings", (req, res) => {
+//     console.log('??')
+//     Join.find({ 'user': req.body.user })
+//     .exec((err, joiner)=> {
+//         if(err) return res.status(400).send(err);
+  
+//         let joinedMeetings = [];
+  
+//         joiner.map((join, i)=> {
+//             joinedMeetings.push(join.meeting)
+//         })
+  
+//         //Need to Fetch all of the Videos that belong to the Users that I found in previous step. 
+//         Join.find({ meeting: { $in: joinedMeetings }})
+//             .populate('meeting')
+//             .exec((err, meetings) => {
+//                 if(err) return res.status(400).send(err);
+//                 res.status(200).json({ success: true, meetings })
+//             })
+//     })
+//   });
+
 
 module.exports = router;

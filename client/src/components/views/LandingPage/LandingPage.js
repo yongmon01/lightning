@@ -7,7 +7,9 @@ import moment from 'moment';
 
 import { createStyles, makeStyles} from '@material-ui/core/styles';
 
-import Icons from './Icons';
+import Icons from './Sections/Icons';
+
+import JoinNumber from './Sections/JoinNumber'
 
 const { Title } = Typography;
 const { Meta } = Card;
@@ -40,30 +42,43 @@ function LandingPage(props) {
             })
     }, [])
 
-    const renderCards = Writings.map((writing, index) => {
+    const renderCards = Writings.sort((a, b) => moment(a.meetingDate) > moment(b.meetingDate) ? 1 : -1)
+        // .sort((a, b) => (a.meetingTime) > (b.meetingTime) ? 1 : -1)
+        .map((writing, index) => {
+
+        // function sort(){
+
+        // }
 
         return (
         <a key={index} href={`/writing/${writing._id}`} 
             style={{color:'black',width:'100%',height:'70px', lineHeight:'65px',
             borderBottom:'1px solid gray'}}>
             <div>
-                <span className={classes.inb} style={{ width:'12%'}}> {moment(writing.meetingDate).format("YY-MM-DD")} </span>
-                <span className={classes.inb} style={{ width:'12%'}}> {writing.meetingTime} </span>
-                <span className={classes.inb} style={{ width:'8%'}}> [{writing.locations}] </span>
-                <span className={classes.inb} style={{ width:'8%'}}> [{writing.category}] </span>
-                <span className={classes.inb} style={{ width:'36%'}}>{writing.title} </span>
+                <span className={classes.inb}  style={{width:'8%'}}>
+                    {[<Icons sports={writing.category}/>]}
+                </span>
+                <span className={classes.inb} style={{ width:'8%'}}> {moment(writing.meetingDate).format("YY-MM-DD")} </span>
+                <span className={classes.inb} style={{ width:'8%'}}> {writing.meetingTime} </span>
+                <span className={classes.inb} style={{ width:'6%'}}> [{writing.locations}] </span>
+                <span className={classes.inb} style={{ width:'6%'}}> [{writing.category}] </span>
+                <span className={classes.inb} style={{ width:'37%'}}>{writing.title} </span>
                 <span className={classes.inb} style={{width:'12%'}}>{writing.writer.name} </span>
-                <span className={classes.inb} style={{width:'10%',textAlign:'right'}}>12명 </span>
+                {/* <span className={classes.inb} style={{width:'10%',textAlign:'right'}}>12명 </span> */}
+                <span >
+                    {[<JoinNumber className={classes.inb} style={{width:'14%'}}
+                        meeting={writing._id} user ={localStorage.getItem('userId')}/>]}
+                </span>
             </div>
         </a>
         )
     })
 
     return (
+        
         <div style={{ width: '75%', margin: 'auto' }}>
             <Title level={2} > Meetings </Title>
             <hr />
-
             {renderCards}
         </div>
     )

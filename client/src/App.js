@@ -17,6 +17,7 @@ import RegisterPage from '../src/components/views/RegisterPage/RegisterPage';
 import VideoUploadPage from '../src/components/views/VideoUploadPage/VideoUploadPage';
 import WritingUploadPage from '../src/components/views/WritingUploadPage/WritingUploadPage';
 import WritingDetailPage from '../src/components/views/WritingDetailPage/WritingDetailPage';
+import JoinedPage from '../src/components/views/JoinedPage/JoinedPage'
 
 import TestPage from '../src/components/views/TestPage/TestPage';
 
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/test" component = {Auth(TestPage, null)}/>
           <Route exact path="/writing/upload" component = {Auth(WritingUploadPage, true)}/>
           <Route exact path="/writing/:writingId" component = {Auth(WritingDetailPage, null)}/>
+          <Route exact path="/join/joinedPage" component = {Auth(JoinedPage, null)}/>
         </Switch>
       </div>
     </Router>
