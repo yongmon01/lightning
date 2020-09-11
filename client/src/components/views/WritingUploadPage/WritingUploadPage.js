@@ -1,30 +1,30 @@
 import React, {useState} from 'react'
-import {Typography, Button, Form, message, Input} from 'antd';
-import Icon from '@ant-design/icons';
-import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 
 import {useSelector} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-const {Title} = Typography;
-const {TextArea} = Input;
+import Button from '@material-ui/core/Button';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
 const LocationOptions = [
-    {value: 0, label: "서울"},
-    {value: 1, label: "경기"},
-    {value: 2, label: "대구"},
-    {value: 3, label: "인천"},
-    {value: 4, label: "부산"},
+    {value: "서울", label: "서울"},
+    {value: "경기", label: "경기"},
+    {value: "대구", label: "대구"},
+    {value: "인천", label: "인천"},
+    {value: "부산", label: "부산"},
 ]
 
 const CategoryOptions = [
-    {value: 0, label: "축구"},
-    {value: 1, label: "족구"},
-    {value: 2, label: "농구"},
-    {value: 3, label: "러닝"},
-    {value: 4, label: "야구"}
+    {value: "축구", label: "축구"},
+    {value: "족구", label: "족구"},
+    {value: "농구", label: "농구"},
+    {value: "러닝", label: "러닝"},
+    {value: "야구", label: "야구"}
 ]
 
 function WritingUploadPage(props) {
@@ -36,8 +36,12 @@ function WritingUploadPage(props) {
     const [Location, setLocation] = useState("서울")
     const [Category, setCategory] = useState("축구")
 
+    const [MeetingDate,setMeetingDate] = useState("")
+    const [MeetingTime,setMeetingTime] = useState("")
+
     const onTitleChange = (e) =>{
         setWritingTitle(e.currentTarget.value)
+
     }
     const onDescriptionChange = (e) =>{
         setDescription(e.currentTarget.value)
@@ -48,41 +52,13 @@ function WritingUploadPage(props) {
     const onCategoryChange = (e) =>{
         setCategory(e.currentTarget.value)
     }
-    // const onDrop = (files) => {
-    //     let formData = new FormData;
-    //     const config = {
-    //         header: {'content-type': 'multipart/form-data'}
-    //     }
-    //     formData.append("file",files[0])
 
-    //     Axios.post('/api/video/uploadfiles',formData, config)
-    //         .then(response => {
-    //             if (response.data.success){
-    //                 console.log(response.data)
-
-    //                 let variable = {
-    //                     url: response.data.url,
-    //                     fileName: response.data.fileName
-    //                 }
-
-    //                 setFilePath(response.data.url)
-
-    //                 Axios.post('/api/video/thumbnail',variable)
-    //                 .then(response=>{
-    //                     if (response.data.success){
-    //                         setDuration(response.data.fileDuration)
-    //                         setThumbnailPath(response.data.url)
-    //                     }
-    //                     else{
-    //                         alert('썸네일 생성 실패')
-    //                     }
-    //                 })
-    //             }
-    //             else{
-    //                 alert('비디오 업로드 실패')
-    //             }
-    //         })
-    // }
+    const onMeetingDateChange = (e) =>{
+        setMeetingDate(e.currentTarget.value)
+    }
+    const onMeetingTimeChange = (e) =>{
+        setMeetingTime(e.currentTarget.value)
+    }
 
     const onSubmit = (e) =>{
         e.preventDefault();
@@ -92,10 +68,9 @@ function WritingUploadPage(props) {
             title: WritingTitle,
             description: Description,
             locations: Location,
-            //filePath: FilePath,
             category: Category,
-            //duration: Duration,
-            //thumbnail: ThumbnailPath
+            meetingDate: MeetingDate,
+            meetingTime: MeetingTime
         }
 
         Axios.post('/api/writing/uploadWriting',variables)
@@ -109,86 +84,81 @@ function WritingUploadPage(props) {
                     console.log('실패')
                 }
             })
-
     }
 
     return (
         <div style = {{maxWidth: '700px', margin: '2rem auto'}}>
-            <div style = {{ textAlign: 'center', marginBottom: '2rem'}}>
-                <Title level = {2}>upload meeting</Title>
+            <div style = {{ textAlign: 'center', marginBottom: '1rem', fontSize:'32px'}}>
+                <label><b>Upload Meeting</b></label>
             </div>
 
-            <Form onSubmit={onSubmit}>
-                {/* <div style = {{display: 'flex', justifyContent:'space-between'}}> */}
-                    {/* Drop Zone */}
-
-                    {/* <Dropzone 
-                    onDrop = {onDrop} multiple = {false} maxSize={100000000}>
-                    {({getRootProps, getInputProps})=>(
-                        <div style = {{width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex',
-                        alignItems: 'center', justifyContent: 'center'}}{...getRootProps()}>
-                            <input {...getInputProps()}/>
-                            <Icon type = "plus" style = {{fontSize: '3rem'}}/>
-
-                        </div>
-                    )}
-
-                    </Dropzone> */}
-
-                    {/* Thumbnail */}
-
-                    {/* 썸네일이 있을때만 나타내기 &&를 사용 */}
-                    
-                    {/* {ThumbnailPath &&
-                    <div>
-                        <img src={`http://localhost:5000/${ThumbnailPath}`} alt="thumbnail"/>
-                    </div>
-                    }
-                </div> */}
-
+            <FormControl onSubmit={onSubmit} style={{width: '100%'}}>
                 <br/>
                 <br/>
+
+                <TextField onChange = {onMeetingDateChange} value = {MeetingDate} style ={{width:'20%'}}
+                    id="date"
+                    label="날짜"
+                    type="date"
+                    // defaultValue="2017-05-24"
+                    //className={classes.textField}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                /><br/><br/>
+                <TextField onChange = {onMeetingTimeChange} value ={MeetingTime} style ={{width:'20%'}}
+                    id="time"
+                    label="시간"
+                    type="time"
+                    //defaultValue="07:30"
+                    //className={classes.textField}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    inputProps={{
+                    step: 300, // 5 min
+                    }}
+                /><br/><br/>
                 
-                <label>Title</label>
-                <Input onChange = {onTitleChange} value = {WritingTitle}/>
-                {/* <input onChange = {onTitleChange} value = {WritingTitle}/> */}
-
-                <br/>
+                <TextField onChange = {onTitleChange} value = {WritingTitle} label="제목" variant="outlined"
+                style={{width:'98%'}} />
                 <br/>
 
-                <label>Description</label>
-                <TextArea onChange = {onDescriptionChange} value = {Description}/>
-                {/* <textarea onChange = {onDescriptionChange} value = {Description}/> */}
-
+                <TextareaAutosize onChange = {onDescriptionChange} value = {Description}
+                rowsMax={10}
+                rowsMin={6}
+                aria-label="maximum height"
+                placeholder="내용을 입력하세요"
+                style={{width:'98%', padding:'10px'}}
+                />
                 <br/>
-                <br/>
 
-                <select onChange={onLocationChange}>
+                <label>지역       </label>
+                <select onChange={onLocationChange} style={{width:'10%'}}>
                     {
                     LocationOptions.map((item, index)=>(
                         <option key = {index} value = {item.value}>{item.label}</option>
                     ))
                     }
                 </select>
+                <br/>
 
-                <br/><br/>
-
-                <select onChange={onCategoryChange}>
+                <label>분류       </label>
+                <select onChange={onCategoryChange} style={{width:'10%'}}>
                     {
                     CategoryOptions.map((item, index)=>(
                         <option key = {index} value = {item.value}>{item.label}</option>
                     ))
                     }
                 </select>
-
                 <br/><br/>
 
-                <Button type="primary" size = "large" onClick={onSubmit}>
-                    Submit
+                <Button variant="contained" color="primary" onClick={onSubmit} 
+                    style={{width: '20%', display: 'block', marginLeft:'auto', marginRight:'auto'}}>
+                    작성
                 </Button>
-
-                
-            </Form>
+    
+            </FormControl>
 
         </div>
     )

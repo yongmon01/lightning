@@ -19,20 +19,18 @@ const writingSchema = mongoose.Schema({
     locations: {
         type: String,
     },
-    // filePath : {
-    //     type: String,
-    // },
     category: String,
     views : {
         type: Number,
         default: 0 
     },
-    // duration :{
-    //     type: String
-    // },
-    // thumbnail: {
-    //     type: String
-    // }
+    meetingDate : {
+        type: Date
+    },
+    meetingTime: {
+        type: String
+    }
+    
 }, 
     //만든날짜 업데이트날짜 기록가능
     { timestamps: true })

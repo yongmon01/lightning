@@ -117,6 +117,8 @@ app.get('/api/hello',(req,res)=>{
 app.use('/api/video',require('./routes/video'))
 
 app.use('/api/writing',require('./routes/writing'))
+
+app.use('/api/join',require('./routes/join'))
 // app.listen(port, () => {
 //   console.log(`Example app listening at http://localhost:${port}`)
 // })	

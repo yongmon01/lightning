@@ -59,8 +59,8 @@ function NavBar(props) {
                     <Typography variant="h6" className={classes.title}>
                     <Button  ><a href='/' className="no-underline">Home</a></Button>
                     </Typography>
-                    <Button  color="inherit"><a href='/login' className="no-underline">Sign in</a></Button>
-                    <Button color="inherit"><a href='/register' className="no-underline">Sign up</a></Button>
+                    <Button  color="inherit"><a href='/login' className="no-underline">로그인</a></Button>
+                    <Button color="inherit"><a href='/register' className="no-underline">회원가입</a></Button>
                     </Toolbar>
                 </AppBar>
             </div>
@@ -76,8 +76,10 @@ function NavBar(props) {
                 
                 <Typography variant="h6" className={classes.title}>
                 <Button ><a href='/'>Home</a></Button>
+                <Button ><a href='/writing/upload' style={{color:'white'}}>글쓰기</a></Button>
+                <Button ><a href='/writing/upload' style={{color:'white'}}>내 활동</a></Button>
                 </Typography>
-                <Button onClick={logoutHandler} color="inherit">Sign out</Button>
+                <Button onClick={logoutHandler} color="inherit">로그아웃</Button>
                 </Toolbar>
             </AppBar>
         )
