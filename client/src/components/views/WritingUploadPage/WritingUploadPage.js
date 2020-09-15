@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Axios from 'axios';
 
 import {useSelector} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-/////////////////
 import MyMap from './MyMap/MyMap'
 
 const { kakao } = window;
@@ -40,8 +38,7 @@ function WritingUploadPage(props)  {
     const [Location, setLocation] = useState("서울")
     const [Category, setCategory] = useState("축구")
     const [MeetingDate,setMeetingDate] = useState("")
-
-    const [CenterAddr, setCenterAddr] = useState("initial")
+    // const [CenterAddr, setCenterAddr] = useState("initial")
     
     const onTitleChange = (e) =>{
         setWritingTitle(e.currentTarget.value)
@@ -58,12 +55,9 @@ function WritingUploadPage(props)  {
     const onMeetingDateChange = (e) =>{
         setMeetingDate(e.currentTarget.value)
     }
-
-    const onCenterAddrChange = (e) =>{
-        setCenterAddr(e.currentTarget.value)
-    }
-
-
+    // const onCenterAddrChange = (e) =>{
+    //     setCenterAddr(e.currentTarget.value)
+    // }
     
     const onSubmit = (e) =>{
         e.preventDefault();

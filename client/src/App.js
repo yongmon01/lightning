@@ -16,10 +16,6 @@ import WritingUploadPage from '../src/components/views/WritingUploadPage/Writing
 import WritingDetailPage from '../src/components/views/WritingDetailPage/WritingDetailPage';
 import JoinedPage from '../src/components/views/JoinedPage/JoinedPage'
 
-import TestPage from '../src/components/views/TestPage/TestPage';
-
-import MyTest from '../src/components/views/WritingUploadPage/MyMap/MyTest';
-
 import Auth from './hoc/auth';
 
 function App() {
@@ -47,12 +43,9 @@ function App() {
           <Route exact path="/" component = {Auth(LandingPage, null)}/>
           <Route exact path="/login" component = {Auth(LoginPage, false)}/>
           <Route exact path="/register" component = {Auth(RegisterPage, false)}/>
-          <Route exact path="/test" component = {Auth(TestPage, null)}/>
           <Route exact path="/writing/upload" component = {Auth(WritingUploadPage, true)}/>
           <Route exact path="/writing/:writingId" component = {Auth(WritingDetailPage, null)}/>
           <Route exact path="/join/joinedPage" component = {Auth(JoinedPage, null)}/>
-
-          <Route exact path="/writing/upload/MyTest" component = {Auth(MyTest, null)}/>
         </Switch>
       </div>
     </Router>

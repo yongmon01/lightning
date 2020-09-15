@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const {auth} = require("../middleware/auth");
-const multer = require("multer");
+// const {auth} = require("../middleware/auth");
+// const multer = require("multer");
 
 const {Writing} = require('../models/Writing');
 const {Join} = require('../models/Join')
 
 router.post('/uploadWriting',(req, res)=>{
-    //글을 서버에 저장한다.
+    
     const writing = new Writing(req.body)
     writing.save((err,writing)=>{
       if (err) return res.json({success: false, err})///
@@ -40,7 +40,6 @@ router.post('/getWritingDetail',(req, res)=>{
 })
 
 router.post("/getJoinedWritings", (req, res) => {
-    //Need to find all of the Users that I am subscribing to From Subscriber Collection 
     
     Join.find({ 'user': req.body.user })
     .exec((err, writings)=> {
@@ -52,7 +51,6 @@ router.post("/getJoinedWritings", (req, res) => {
           joinedWriting.push(writing.meeting)
         })
 
-        //Need to Fetch all of the Videos that belong to the Users that I found in previous step. 
         Writing.find({ _id: { $in: joinedWriting }})
             .populate('writer')
             .exec((err, writings) => {

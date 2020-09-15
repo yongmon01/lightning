@@ -21,7 +21,7 @@ function Join(props) {
                     setJoinedNumber(response.data.joinedNumber)
                 }
                 else{
-                    alert('구독자수 정보 받아오기 실패')
+                    alert('참가수 정보 받아오기 실패')
                 }
             })
         
@@ -62,7 +62,7 @@ function Join(props) {
                         setJoined(!Joined)
                     }
                     else{
-                        alert('failed to join')
+                        alert('참여 실패')
                     }
                 })
 

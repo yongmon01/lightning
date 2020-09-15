@@ -2,14 +2,15 @@ import React, {useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {registerUser} from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
-import Axios from 'axios';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
-//props?
 function RegisterPage(props) {
 
     const dispatch = useDispatch();
 
-    const [Email, setEmail] = useState("initialState")
+    const [Email, setEmail] = useState("")
     const [Name, setName] = useState("")
     const [Password, setPassword] = useState("")
     const [ConfirmPassword, setConfirmPassword] = useState("")
@@ -43,40 +44,46 @@ function RegisterPage(props) {
         dispatch(registerUser(body))
             .then(response=>{
                 if (response.payload.success){
+                    alert('회원가입에 성공하셨습니다')
                     props.history.push('/login')
                 }
                 else {
-                    alert('Failed to sign up')
+                    alert('회원가입 실패')
                 }
             })
     }
 
     return (
-        <div style = {{
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
-            width: '100%', height: '100vh'
-        }}>
-            
-            <form style = {{display:'flex', flexDirection: 'column'}}
-                onSubmit = {onSubmitHandler}
-            >
-                <label>Email</label>
-                <input type = "email" value={Email} onChange={onEmailHandler} />
-                
-                <label>Name</label>
-                <input type = "text" value={Name} onChange={onNameHandler} />
-                
-                <label>Password</label>
-                <input type = "password" value={Password} onChange={onPasswordHandler} />
-                
-                <label>Confirm password</label>
-                <input type = "password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
 
-                <br/>
-                <button type = "submit">Register</button>
-            </form>
+        <div style = {{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '80vh'}}> 
+            <div style={{display:'flex', flexDirection: 'column'}}>
+                <FormControl onSubmit = {onSubmitHandler}>
+                    
+                    <br/><br/>
+                    <div style={{ width:'300px'}}></div>
+                    <br/>
+                    <label>Email</label>
+                    <TextField type = "email" value={Email} onChange={onEmailHandler}/><br/>
+
+                    <label>Name</label>
+                    <TextField type = "text" value={Name} onChange={onNameHandler}/><br/>
+                    
+                    <label>Password</label>
+                    <TextField type = "password" value={Password} onChange={onPasswordHandler}/><br/>
+
+                    <label>Confirm password</label>
+                    <TextField type = "password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/><br/><br/>
+
+                    <Button  variant="contained" color="primary" onClick = {onSubmitHandler}
+                        style={{width:'50%',marginLeft:'auto',marginRight:'auto'}}>
+                        회원가입
+                    </Button>
+                </FormControl>
+            </div>
+
 
         </div>
+        
     )
 }
 

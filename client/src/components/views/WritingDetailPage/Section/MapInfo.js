@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
-import Axios from 'axios';
+// import Axios from 'axios';
 const { kakao } = window;
 
 const MapInfo = (props) => {
