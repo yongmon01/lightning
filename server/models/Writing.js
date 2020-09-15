@@ -27,7 +27,10 @@ const writingSchema = mongoose.Schema({
     meetingDate : {
         type: Date
     },
-    meetingTime: {
+    address: {
+        type: String
+    },
+    roadAddress: {
         type: String
     }
     

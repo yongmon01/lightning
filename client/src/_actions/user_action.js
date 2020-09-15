@@ -14,7 +14,6 @@ export function loginUser(dataToSubmit){
         type: LOGIN_USER,
         payload: request
     }
-
 }
 
 export function registerUser(dataToSubmit){
@@ -26,7 +25,6 @@ export function registerUser(dataToSubmit){
         type: REGISTER_USER,
         payload: request
     }
-
 }
 
 export function auth(){
@@ -38,5 +36,4 @@ export function auth(){
         type: AUTH_USER,
         payload: request
     }
-
 }

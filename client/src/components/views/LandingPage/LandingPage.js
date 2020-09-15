@@ -11,6 +11,8 @@ import Icons from './Sections/Icons';
 
 import JoinNumber from './Sections/JoinNumber'
 
+import Pagination from '@material-ui/lab/Pagination';
+
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -58,11 +60,13 @@ function LandingPage(props) {
                 <span className={classes.inb}  style={{width:'8%'}}>
                     {[<Icons sports={writing.category}/>]}
                 </span>
-                <span className={classes.inb} style={{ width:'8%'}}> {moment(writing.meetingDate).format("YY-MM-DD")} </span>
-                <span className={classes.inb} style={{ width:'8%'}}> {writing.meetingTime} </span>
+                <span className={classes.inb} style={{ width:'12%'}}> 
+                    {moment(writing.meetingDate).format("YY-MM-DD / HH: mm")}
+                    </span>
+                {/* <span className={classes.inb} style={{ width:'8%'}}> {writing.meetingTime} </span> */}
                 <span className={classes.inb} style={{ width:'6%'}}> [{writing.locations}] </span>
                 <span className={classes.inb} style={{ width:'6%'}}> [{writing.category}] </span>
-                <span className={classes.inb} style={{ width:'37%'}}>{writing.title} </span>
+                <span className={classes.inb} style={{ width:'41%'}}>{writing.title} </span>
                 <span className={classes.inb} style={{width:'12%'}}>{writing.writer.name} </span>
                 {/* <span className={classes.inb} style={{width:'10%',textAlign:'right'}}>12명 </span> */}
                 <span >
@@ -80,6 +84,7 @@ function LandingPage(props) {
             <Title level={2} > Meetings </Title>
             <hr />
             {renderCards}
+            <Pagination count={5} color="primary"></Pagination>
         </div>
     )
 }

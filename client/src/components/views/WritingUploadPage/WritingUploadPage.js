@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Axios from 'axios';
 
 import {useSelector} from 'react-redux';
@@ -10,6 +10,10 @@ import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+/////////////////
+import MyMap from './MyMap/MyMap'
+
+const { kakao } = window;
 
 const LocationOptions = [
     {value: "서울", label: "서울"},
@@ -27,7 +31,7 @@ const CategoryOptions = [
     {value: "야구", label: "야구"}
 ]
 
-function WritingUploadPage(props) {
+function WritingUploadPage(props)  {
     //유저의 모든정보를 유저에담아
     const user = useSelector(state => state.user)
 
@@ -35,13 +39,12 @@ function WritingUploadPage(props) {
     const [Description, setDescription] = useState("")
     const [Location, setLocation] = useState("서울")
     const [Category, setCategory] = useState("축구")
-
     const [MeetingDate,setMeetingDate] = useState("")
-    const [MeetingTime,setMeetingTime] = useState("")
 
+    const [CenterAddr, setCenterAddr] = useState("initial")
+    
     const onTitleChange = (e) =>{
         setWritingTitle(e.currentTarget.value)
-
     }
     const onDescriptionChange = (e) =>{
         setDescription(e.currentTarget.value)
@@ -52,16 +55,21 @@ function WritingUploadPage(props) {
     const onCategoryChange = (e) =>{
         setCategory(e.currentTarget.value)
     }
-
     const onMeetingDateChange = (e) =>{
         setMeetingDate(e.currentTarget.value)
     }
-    const onMeetingTimeChange = (e) =>{
-        setMeetingTime(e.currentTarget.value)
+
+    const onCenterAddrChange = (e) =>{
+        setCenterAddr(e.currentTarget.value)
     }
 
+
+    
     const onSubmit = (e) =>{
         e.preventDefault();
+
+        const RoadAddress = window.sessionStorage.getItem('road_address')
+        const Address = window.sessionStorage.getItem('address')
 
         const variables = {
             writer: user.userData._id,
@@ -70,8 +78,11 @@ function WritingUploadPage(props) {
             locations: Location,
             category: Category,
             meetingDate: MeetingDate,
-            meetingTime: MeetingTime
+            address: Address,
+            roadAddress: RoadAddress
         }
+
+        window.sessionStorage.clear()
 
         Axios.post('/api/writing/uploadWriting',variables)
             .then(response=>{
@@ -92,33 +103,23 @@ function WritingUploadPage(props) {
                 <label><b>Upload Meeting</b></label>
             </div>
 
+            <MyMap/><br/><br/><br/>
+
             <FormControl onSubmit={onSubmit} style={{width: '100%'}}>
                 <br/>
                 <br/>
 
-                <TextField onChange = {onMeetingDateChange} value = {MeetingDate} style ={{width:'20%'}}
-                    id="date"
-                    label="날짜"
-                    type="date"
+                <TextField onChange = {onMeetingDateChange} value = {MeetingDate} style ={{width:'42%'}}
+                    id="datetime"
+                    label="시간"
+                    type="datetime-local"
                     // defaultValue="2017-05-24"
                     //className={classes.textField}
                     InputLabelProps={{
                     shrink: true,
                     }}
-                /><br/><br/>
-                <TextField onChange = {onMeetingTimeChange} value ={MeetingTime} style ={{width:'20%'}}
-                    id="time"
-                    label="시간"
-                    type="time"
-                    //defaultValue="07:30"
-                    //className={classes.textField}
-                    InputLabelProps={{
-                    shrink: true,
-                    }}
-                    inputProps={{
-                    step: 300, // 5 min
-                    }}
-                /><br/><br/>
+                />
+                <br/><br/>
                 
                 <TextField onChange = {onTitleChange} value = {WritingTitle} label="제목" variant="outlined"
                 style={{width:'98%'}} />
