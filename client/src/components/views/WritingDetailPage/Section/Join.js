@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 function Join(props) {
 
@@ -21,7 +22,7 @@ function Join(props) {
                     setJoinedNumber(response.data.joinedNumber)
                 }
                 else{
-                    alert('참가수 정보 받아오기 실패')
+                    alert('Failed to get joined number')
                 }
             })
         
@@ -31,7 +32,7 @@ function Join(props) {
                     setJoined(response.data.joined)
                 }
                 else{
-                    alert('정보받아오기 실패')
+                    alert('Failed to get joined')
                 }
             })
     }, [])
@@ -42,6 +43,7 @@ function Join(props) {
             meeting: meeting,
             user: user
         }
+
         if (Joined){
             Axios.post('/api/join/cancelJoin',JoinedVariable)
                 .then(response => {
@@ -50,7 +52,7 @@ function Join(props) {
                         setJoined(!Joined)
                     }
                     else{
-                        alert('failed to cancel join')
+                        alert('Failed to cancel join')
                     }
                 })
         }
@@ -62,24 +64,19 @@ function Join(props) {
                         setJoined(!Joined)
                     }
                     else{
-                        alert('참여 실패')
+                        alert('Failed to join')
                     }
                 })
-
         }
     }
 
     return (
         <div>
-            <button style = {{
-                backgroundColor: `${Joined ? '#AAAAAA': '#CC0000'}`, borderRadius: '4px',
-                color: 'white', padding: '10px 16px',
-                fontWeight: '500', fontSize: '1rem', textTransform: 'uppercase'
-            }}
-            onClick = {onJoin}
-            >
-                {JoinedNumber} {Joined ? 'Joined' : 'Join'}
-            </button>
+            <Button variant="contained" color="primary" onClick={onJoin}
+                    style={{width: '20%', display: 'block', marginLeft:'auto', marginRight:'auto',
+                    backgroundColor: `${Joined ? 'gray': '#0000FF'}`,}}>
+                    {JoinedNumber} {Joined ? 'JOINED' : 'JOIN'}
+            </Button>
         </div>
     )
 }

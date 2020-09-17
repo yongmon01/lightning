@@ -1,15 +1,12 @@
 import React, {useState} from 'react'
 import Axios from 'axios';
-
 import {useSelector} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import MyMap from './MyMap/MyMap'
+import MyMap from './MyMap/MyMap';
 
 const { kakao } = window;
 
@@ -30,7 +27,7 @@ const CategoryOptions = [
 ]
 
 function WritingUploadPage(props)  {
-    //유저의 모든정보를 유저에담아
+
     const user = useSelector(state => state.user)
 
     const [WritingTitle, setWritingTitle] = useState("")
@@ -38,7 +35,6 @@ function WritingUploadPage(props)  {
     const [Location, setLocation] = useState("서울")
     const [Category, setCategory] = useState("축구")
     const [MeetingDate,setMeetingDate] = useState("")
-    // const [CenterAddr, setCenterAddr] = useState("initial")
     
     const onTitleChange = (e) =>{
         setWritingTitle(e.currentTarget.value)
@@ -55,9 +51,6 @@ function WritingUploadPage(props)  {
     const onMeetingDateChange = (e) =>{
         setMeetingDate(e.currentTarget.value)
     }
-    // const onCenterAddrChange = (e) =>{
-    //     setCenterAddr(e.currentTarget.value)
-    // }
     
     const onSubmit = (e) =>{
         e.preventDefault();
@@ -99,36 +92,28 @@ function WritingUploadPage(props)  {
 
             <MyMap/><br/><br/><br/>
 
-            <FormControl onSubmit={onSubmit} style={{width: '100%'}}>
-                <br/>
-                <br/>
+            <FormControl onSubmit={onSubmit} style={{width: '100%'}}><br/><br/>
 
                 <TextField onChange = {onMeetingDateChange} value = {MeetingDate} style ={{width:'42%'}}
                     id="datetime"
                     label="시간"
                     type="datetime-local"
-                    // defaultValue="2017-05-24"
-                    //className={classes.textField}
                     InputLabelProps={{
                     shrink: true,
-                    }}
-                />
-                <br/><br/>
+                    }}/><br/><br/>
                 
                 <TextField onChange = {onTitleChange} value = {WritingTitle} label="제목" variant="outlined"
-                style={{width:'98%'}} />
-                <br/>
+                style={{width:'98%'}} /><br/>
 
                 <TextareaAutosize onChange = {onDescriptionChange} value = {Description}
-                rowsMax={10}
-                rowsMin={6}
-                aria-label="maximum height"
-                placeholder="내용을 입력하세요"
-                style={{width:'98%', padding:'10px'}}
-                />
-                <br/>
+                    rowsMax={10}
+                    rowsMin={6}
+                    aria-label="maximum height"
+                    placeholder="내용을 입력하세요"
+                    style={{width:'98%', padding:'10px'}}
+                /><br/>
 
-                <label>지역       </label>
+                <label>지역</label>
                 <select onChange={onLocationChange} style={{width:'10%'}}>
                     {
                     LocationOptions.map((item, index)=>(
@@ -136,23 +121,20 @@ function WritingUploadPage(props)  {
                     ))
                     }
                 </select>
-                <br/>
 
-                <label>분류       </label>
+                <label>분류</label>
                 <select onChange={onCategoryChange} style={{width:'10%'}}>
                     {
                     CategoryOptions.map((item, index)=>(
                         <option key = {index} value = {item.value}>{item.label}</option>
                     ))
                     }
-                </select>
-                <br/><br/>
+                </select><br/>
 
                 <Button variant="contained" color="primary" onClick={onSubmit} 
                     style={{width: '20%', display: 'block', marginLeft:'auto', marginRight:'auto'}}>
                     작성
                 </Button>
-    
             </FormControl>
 
         </div>

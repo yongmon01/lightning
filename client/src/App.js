@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './App.css';
 
 import {
@@ -22,24 +21,8 @@ function App() {
   return (
     <Router>
       <NavBar />
-      {/* <TestPage/> */}
       <div>
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-        <Switch>
-          {/* <Route exact path="/">
-            <LandingPage />
-          </Route>
-
-          <Route exact path="/login">
-            <LoginPage />
-          </Route> */}
-          
+        <Switch>          
           <Route exact path="/" component = {Auth(LandingPage, null)}/>
           <Route exact path="/login" component = {Auth(LoginPage, false)}/>
           <Route exact path="/register" component = {Auth(RegisterPage, false)}/>
@@ -51,6 +34,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;

@@ -34,14 +34,13 @@ const MyMap = (props) => {
 
         if (navigator.geolocation && number===0) {
     
-            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
             navigator.geolocation.getCurrentPosition(function(position) {
                 
-                var lat = position.coords.latitude, // 위도
-                    lon = position.coords.longitude; // 경도
+                var lat = position.coords.latitude,
+                    lon = position.coords.longitude; 
                 
                 var locPosition = new kakao.maps.LatLng(lat, lon)
-                // 마커와 인포윈도우를 표시합니다
+                
                 marker.setPosition(locPosition);
                 marker.setMap(map);
                 map.setCenter(locPosition);
@@ -62,9 +61,7 @@ const MyMap = (props) => {
                     }
                 })
               });
-            
         }
-
 
         if (number > 0){
             geocoder.addressSearch(SearchAddress, function(result, status) {
@@ -96,7 +93,7 @@ const MyMap = (props) => {
   
         kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-                console.log(result[0])//
+                console.log(result[0])
                 if (status === kakao.maps.services.Status.OK) {
                     
                     var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
@@ -104,14 +101,11 @@ const MyMap = (props) => {
                     
                     var content = '<div class="bAddr" style="padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">' +
                                     '<span class="title" style="font-weight:bold;display:block;">주소정보</span>' + 
-                                    detailAddr + 
-                                '</div>';
+                                    detailAddr + '</div>';
                                 
-                    // 마커를 클릭한 위치에 표시합니다 
                     marker.setPosition(mouseEvent.latLng);
                     marker.setMap(map);
         
-                    // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
 
@@ -124,7 +118,6 @@ const MyMap = (props) => {
                         window.sessionStorage.setItem('address', result[0].address.address_name)
                     else
                         window.sessionStorage.setItem('address', '')
-
                 }   
             });
         });
@@ -134,12 +127,10 @@ const MyMap = (props) => {
         });
 
         function searchAddrFromCoords(coords, callback) {
-            // 좌표로 주소 정보를 요청합니다
             geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
         }
 
         function searchDetailAddrFromCoords(coords, callback) {
-            // 좌표로 상세 주소 정보를 요청합니다
             geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
         }
 
@@ -180,9 +171,7 @@ const MyMap = (props) => {
                     </Button>                    
                 </Grid>
             </Grid>
-                
         </div>
-        
     );
 }
 

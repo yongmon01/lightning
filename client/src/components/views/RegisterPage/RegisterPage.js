@@ -9,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 function RegisterPage(props) {
 
     const dispatch = useDispatch();
-
     const [Email, setEmail] = useState("")
     const [Name, setName] = useState("")
     const [Password, setPassword] = useState("")
@@ -29,7 +28,7 @@ function RegisterPage(props) {
     }
 
     const onSubmitHandler = (event) => {
-        //페이지 새로고침 방지
+
         event.preventDefault();
 
         if (Password !== ConfirmPassword )
@@ -48,7 +47,7 @@ function RegisterPage(props) {
                     props.history.push('/login')
                 }
                 else {
-                    alert('회원가입 실패')
+                    alert('Failed to Sign Up')
                 }
             })
     }
@@ -60,8 +59,8 @@ function RegisterPage(props) {
                 <FormControl onSubmit = {onSubmitHandler}>
                     
                     <br/><br/>
-                    <div style={{ width:'300px'}}></div>
-                    <br/>
+                    <div style={{ width:'300px'}}></div><br/>
+
                     <label>Email</label>
                     <TextField type = "email" value={Email} onChange={onEmailHandler}/><br/>
 
@@ -80,10 +79,7 @@ function RegisterPage(props) {
                     </Button>
                 </FormControl>
             </div>
-
-
         </div>
-        
     )
 }
 

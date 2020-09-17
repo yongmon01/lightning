@@ -50,7 +50,7 @@ function JoinedPage() {
                         </span>
                         <span className={classes.inb} style={{ width:'12%'}}> 
                             {moment(writing.meetingDate).format("YY-MM-DD / HH: mm")}
-                            </span>
+                        </span>
                         <span className={classes.inb} style={{ width:'6%'}}> [{writing.locations}] </span>
                         <span className={classes.inb} style={{ width:'6%'}}> [{writing.category}] </span>
                         <span className={classes.inb} style={{ width:'41%'}}>{writing.title} </span>
@@ -66,7 +66,7 @@ function JoinedPage() {
 
     return (
         <div style={{ width: '75%', margin: 'auto' }}>
-            <h1 > <b>내 모임</b> </h1>
+            <h1><b>내 모임</b></h1>
             <hr />
             {renderCards}
         </div>

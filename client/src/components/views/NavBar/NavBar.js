@@ -1,18 +1,12 @@
 import React from 'react'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-
+import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-//import MenuIcon from '@material-ui/icons/Menu';
-
-import './Sections/NavBar.css';
-
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 function NavBar(props) {
 
     const classes = useStyles();
-
     const user = useSelector(state => state.user)
 
     const logoutHandler = () =>{
@@ -42,7 +35,7 @@ function NavBar(props) {
                 props.history.push('/login')
             }
             else{
-                alert('로그아웃 실패')
+                alert('Failed to logout')
             }
         })
     }
@@ -52,15 +45,11 @@ function NavBar(props) {
             <div>
                 <AppBar position="static">
                     <Toolbar>
-                    {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton> */}
-                    
-                    <Typography variant="h6" className={classes.title}>
-                    <Button  ><a href='/' className="no-underline">Home</a></Button>
-                    </Typography>
-                    <Button  color="inherit"><a href='/login' className="no-underline">로그인</a></Button>
-                    <Button color="inherit"><a href='/register' className="no-underline">회원가입</a></Button>
+                        <Typography variant="h6" className={classes.title}>
+                        <Button  ><a href='/' style={{color: 'white', textDecoration:'none'}}>Home</a></Button>
+                        </Typography>
+                        <Button  color="inherit"><a href='/login' style={{color: 'white', textDecoration:'none'}}>로그인</a></Button>
+                        <Button color="inherit"><a href='/register' style={{color: 'white', textDecoration:'none'}}>회원가입</a></Button>
                     </Toolbar>
                 </AppBar>
             </div>
@@ -70,16 +59,12 @@ function NavBar(props) {
         return (
             <AppBar position="static">
                 <Toolbar>
-                {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
-                </IconButton> */}
-                
-                <Typography variant="h6" className={classes.title}>
-                <Button ><a href='/'>Home</a></Button>
-                <Button ><a href='/writing/upload' style={{color:'white'}}>글쓰기</a></Button>
-                <Button ><a href='/join/joinedPage' style={{color:'white'}}>내 활동</a></Button>
-                </Typography>
-                <Button onClick={logoutHandler} color="inherit">로그아웃</Button>
+                    <Typography variant="h6" className={classes.title}>
+                    <Button ><a href='/' style={{color:'white',textDecoration:'none'}}>Home</a></Button>
+                    <Button ><a href='/writing/upload' style={{color:'white', textDecoration:'none'}}>글쓰기</a></Button>
+                    <Button ><a href='/join/joinedPage' style={{color:'white', textDecoration:'none'}}>내 활동</a></Button>
+                    </Typography>
+                    <Button onClick={logoutHandler} color="inherit">로그아웃</Button>
                 </Toolbar>
             </AppBar>
         )

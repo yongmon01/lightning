@@ -21,7 +21,7 @@ function JoinNumber(props) {
                     setJoinedNumber(response.data.joinedNumber)
                 }
                 else{
-                    alert('구독자수 정보 받아오기 실패')
+                    alert('Failed to get joined numbers')
                 }
             })
         
@@ -31,7 +31,7 @@ function JoinNumber(props) {
                     setJoined(response.data.joined)
                 }
                 else{
-                    alert('정보받아오기 실패')
+                    alert('Failed to get joined')
                 }
             })
     }, [])

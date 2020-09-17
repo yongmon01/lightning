@@ -1,18 +1,14 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
-// import Axios from 'axios';
 import SportsSoccerTwoToneIcon from '@material-ui/icons/SportsSoccerTwoTone';
 import SportsBasketballTwoToneIcon from '@material-ui/icons/SportsBasketballTwoTone';
 import SportsBaseballTwoToneIcon from '@material-ui/icons/SportsBaseballTwoTone';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
-// import { rgbToHex } from '@material-ui/core';
 
 function Icons(props) {
 
     const sports = props.sports
 
-    // const [JoinedNumber, setJoinedNumber] = useState(0)
-    // const [Joined, setJoined] = useState(false)
     if (sports==="축구")
         return (
             <span>
@@ -39,7 +35,7 @@ function Icons(props) {
         )
     else
         return(
-            <span>
+            <span style={{color: '#006633'}}>
                 <DirectionsRunIcon/>
             </span>
         )

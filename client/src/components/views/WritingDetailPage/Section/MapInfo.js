@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
-// import Axios from 'axios';
 const { kakao } = window;
 
 const MapInfo = (props) => {
@@ -14,7 +13,6 @@ const MapInfo = (props) => {
         
         geocoder.addressSearch(address, function(result, status) {
 
-            // 정상적으로 검색이 완료됐으면 
              if (status === kakao.maps.services.Status.OK) {
                 const mapOption = {
                     center: new kakao.maps.LatLng(result[0].y, result[0].x),
@@ -34,10 +32,7 @@ const MapInfo = (props) => {
     return(
         <div style={{width:'100%',height:'410px'}}>
             {address}
-            <div id='map' style={{
-                width: '100%', 
-                height: '100%'
-            }}></div>
+            <div id='map' style={{ width: '100%', height: '100%'}}></div>
         </div>
     )
 }
