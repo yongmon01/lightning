@@ -43,7 +43,7 @@ function JoinedPage() {
             return (
                 <a key={index} href={`/writing/${writing._id}`} 
                     style={{color:'black',width:'100%',height:'70px', lineHeight:'65px',
-                    borderBottom:'1px solid gray'}}>
+                    borderBottom:'1px solid gray',textDecoration:'none'}}>
                     <div>
                         <span className={classes.inb}  style={{width:'8%'}}>
                             {[<Icons sports={writing.category}/>]}
@@ -66,7 +66,7 @@ function JoinedPage() {
 
     return (
         <div style={{ width: '75%', margin: 'auto' }}>
-            <h1><b>내 모임</b></h1>
+            <h2><b>My Meetings</b></h2>
             <hr />
             {renderCards}
         </div>

@@ -70,7 +70,6 @@ function LandingPage(props) {
     return (
         
         <div style={{ width: '75%', margin: 'auto' }}>
-            <br/>
             <h2 > <b>Meetings</b>
                 <Button className={classes.btn} style={{backgroundColor: `${Category==="All" ? 'gray': 'white'}`}}
                     onClick={() => {setCategory("All")}}>ALL</Button>
