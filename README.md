@@ -1,12 +1,11 @@
 # Lightning
+
 ![home image][logo]
+
 [logo]: https://yongmon01.github.io/assets/css/images/img_c.jpg "app home image"
 
-![Kayak][logo]
-
-[logo]: http://www.gstatic.com/webp/gallery/2.jpg "To go kayaking."
-
-라이트닝은 운동 모임 웹 어플리케이션 입니다. 사용자들은 운동모임을 만들고 참여 할수있습니다.
+라이트닝은 운동모임 웹 어플리케이션 입니다. 사용자는 회원가입을 하고 원하는 운동모임에 참가할 수 있습니다.
+원하는 모임이 없다면 모임을 직접 게시 할 수도 있습니다.
 
 ------
 
@@ -22,7 +21,7 @@
 
 # 프로젝트 데모 페이지
 
-아래 링크로 가시면 프로젝트 스크린샷과 간단한 설명을 보실수 있습니다.
+아래 링크로 가시면 프로젝트 스크린샷과 간단한 설명을 보실수 있습니다. 감사합니다.
 https://yongmon01.github.io/lightningDemo.html
 
 
